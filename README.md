@@ -77,7 +77,8 @@ adb screencap -> pull 으로 스샷 갖고와서 사진분석..은 가능하지�
 
 ## 개발일지
 
-> 2024-08-23   
+> 2024-08-23
+
 올해에는 개발 못끝낼게 예상됨..
 <details><summary><code>이미지</code></summary>
 
@@ -89,6 +90,7 @@ adb screencap -> pull 으로 스샷 갖고와서 사진분석..은 가능하지�
 <img src="readme_imgs/2024-08-23_2.png" width="400">
 </ul>
 </details>
+
  - adb pair 완성 (init_device.bat)
  - 대충 adb 연결이랑 블아 실행 완성
  - ip.txt 추가, settings.txt같은거 추가예정 (key=val format) 아님 json이라던가?
