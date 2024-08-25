@@ -130,7 +130,7 @@ adb & .bat 연습용
 > 2024-08-23
 
 올해에는 개발 못끝낼게 예상됨..
-<details><summary><code>이미지</code></summary>
+<details><summary><code>더보기</code></summary>
 <ul>
 <li>init_device.bat: 기기 최초 페어링</li>
 <img src="readme_imgs/2024-08-23_1.png" width="400">
@@ -148,8 +148,8 @@ adb & .bat 연습용
 > 2024-08-25
 
 js 폴더 추가
-<details><summary><code>이미지</code></summary>
-<img src="readme_imgs/2024-08-25.png" width="200">
+<details><summary><code>더보기</code></summary>
+<img src="readme_imgs/2024-08-25_1.png" width="200">
 
  - sharp.js: 전술대회 스킵이 켜져있는가 확인용 (수정예정)
  - test.js: 카페에서 클릭해야 할 학생 위치 찾기용 (개발중)
@@ -159,11 +159,12 @@ js 폴더 추가
 <br>
 
 `wm size`로 스크린 wxh 들고게함
-<details><summary><code>이미지</code></summary>
- <img src="readme_imgs/2024-08-25.png" width="200">
+<details><summary><code>더보기</code></summary>
+ <img src="readme_imgs/2024-08-25_2.png" width="200">
 
- + 스크린사이즈를 `adb shell wm size`로 직접 갖고오기로 햇음.
-
+ - 스크린사이즈를 `adb shell wm size`로 직접 갖고오기로 햇음.
+ - 화면 켜주는것도 추가(?). 사용자 맞춤 기능으로 넣을수도?
+</details>
 
 <br><br>
 
