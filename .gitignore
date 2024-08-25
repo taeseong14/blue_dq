@@ -1,2 +1,4 @@
 *.txt
 # ip.txt
+
+node_modules/
