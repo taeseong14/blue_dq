@@ -19,7 +19,10 @@ if (ms > 1000) {
         }
     }, 1000);
 } else {
-
+    setTimeout(() => {
+        if (display) console.log(`waited ${process.argv[2]}s`);
+        process.exit(0);
+    }, ms);
 }
 
 

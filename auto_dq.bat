@@ -20,7 +20,7 @@ for /f "tokens=*" %%a in ('adb devices ^| findstr /R /C:"device$" ^| find /C /V 
 echo connected devices: %devices%
 
 if !devices! LSS 1 (
-    set t=2 & call :wait
+    node b_a/js/w.js 2
     goto ConnectDevice
 ) else if !devices! GTR 1 ( REM using more than 1 device
     echo [^^!] connected device more than 1
@@ -60,17 +60,133 @@ echo screen size: %screenX%x%screenY%
 set /a x = screenX / 2 & set /a y = screenY / 2
 
 
-node b_a/js/w.js 20 1 REM TODO: 딜레이 다시 조정
+node b_a/js/w.js 35 1
 
-adb shell input tap 100 1000 REM 오늘 하루 보지 않기
-set t=1 & call :wait
+adb shell input tap 369 1017 REM 오늘 하루 보지 않기
+node b_a/js/w.js 200
 adb shell input tap %x% %y% REM touch to start
 echo game started
+
+node b_a/js/w.js 30 1
+
+adb shell input tap %x% %y% REM 출석 보상
+
+node b_a/js/w.js 5 1
+
+adb shell input tap %x% %y% REM 메모리얼 스킵
+node b_a/js/w.js 200
+adb shell input tap 1380 777 REM 확인
+
+node b_a/js/w.js 3
+adb shell input tap 2077 86 REM 공지 x
+
+@REM TODO: 아이템 기한 만료시 스샷 찍기, 몇초 기다려야하는지 확인
+
+node b_a/js/w.js 1
+
+adb shell input tap 241 974 REM 카페 들가기
+
+node b_a/js/w.js 7
+
+adb shell input tap 2000 %y% REM 대충 오른쪽 탭
+node b_a/js/w.js 1
+
+@REM TODO: 카페 학생 탭하기
+
+adb shell input tap 2024 959 REM 카페 수익
+node b_a/js/w.js 1
+adb shell input tap %x% 824 REM 수령
+node b_a/js/w.js 3
+adb shell input tap 2023 133
+node b_a/js/w.js 500
+adb shell input tap 2023 133
+node b_a/js/w.js 500
+adb shell input tap 2023 133 REM 구석 터치 (창들 닫기)
+node b_a/js/w.js 500
+adb shell input tap 286 166 REM 카페 이동
+node b_a/js/w.js 1
+adb shell input tap 500 272 REM 2호점
+node b_a/js/w.js 7
+adb shell input tap 2000 %y% REM 대충 오른쪽 탭
+
+@REM TODO: 카페 학생 탭하기 (2호점)
+
+adb shell input tap 2185 41 REM 홈버튼
+node b_a/js/w.js 7
+
+@REM adb shell input tap 432 974 REM TODO: 스케쥴
+
+adb shell input tap 1023 974 REM 소셜버튼
+node b_a/js/w.js 1500
+adb shell input tap 500 500 REM 서클
+node b_a/js/w.js 4
+adb shell input tap 2185 41 REM 홈버튼
+node b_a/js/w.js 200
+adb shell input tap 2185 41 REM 홈버튼
+node b_a/js/w.js 4
+
+adb shell input tap 1239 974 REM 제조
+node b_a/js/w.js 2
+adb shell input tap 1592 983 REM 빠른 제조
+node b_a/js/w.js 2
+adb shell input tap 1968 930 REM 제조 시작
+node b_a/js/w.js 1
+adb shell input tap 1380 777 REM 확인
+node b_a/js/w.js 1
+adb shell input tap 2185 41 REM 홈버튼
+node b_a/js/w.js 2
+
+adb shell input tap 1435 974 REM 상점
+node b_a/js/w.js 2
+adb shell input tap 1275 408 REM 회색보고서 선택
+node b_a/js/w.js 1
+adb shell input tap 2066 980 REM 선택 구매
+node b_a/js/w.js 1
+adb shell input tap 1387 753 REM 확인
+node b_a/js/w.js 2
+adb shell input tap 2185 41 REM 홈버튼
+node b_a/js/w.js 200
+adb shell input tap 2185 41 REM 홈버튼
+node b_a/js/w.js 2
+
+adb shell input tap 2122 827 REM 업무
+node b_a/js/w.js 3
+
+adb shell input tap 1352 655 REM 현상수배
+node b_a/js/w.js 2
+set /a r = %random% %% 3
+if %r% == 0 (
+    adb shell input tap 2000 345 REM 고가도로
+) else if %r% == 1 (
+    adb shell input tap 2000 536 REM 기찻길
+) else (
+    adb shell input tap 2000 707 REM 교실
+)
+node b_a/js/w.js 2
+adb shell input swipe 1688 900 1688 300 300 REM 맽 밑으로
+node b_a/js/w.js 1
+adb shell input tap 1981 925 REM 입장 (마지막)
+node b_a/js/w.js 1
+adb shell input tap 1926 435 REM max
+node b_a/js/w.js 200
+adb shell input tap 1664 614 REM 소탕 시작 버튼
+node b_a/js/w.js 1
+adb shell input tap 1380 777 REM 확인
+node b_a/js/w.js 7
+
+
+@REM adb shell input tap 2028 62 REM 우편함
+@REM adb shell input tap 194 401 REM 미션
+
+
+
+@REM adb shell input tap %x% %y%
+
+
 
 @REM TODO: ./READMD.md#47
 @REM timeout /t 30 /nobreak
 
-@REM adb shell input tap 2090 90 REM 공지 x
 
 
 
@@ -81,9 +197,6 @@ set /p a="Enter to continue"
 goto :eof
 
 
-:wait
-timeout /t !t! /nobreak > nul 2>&1
-goto :eof
 
 :screencap
 adb shell screencap sdcard/screen.png
