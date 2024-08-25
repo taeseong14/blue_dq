@@ -133,9 +133,9 @@ adb & .bat 연습용
 <details><summary><code>더보기</code></summary>
 <ul>
 <li>init_device.bat: 기기 최초 페어링</li>
-<img src="readme_imgs/2024-08-23_1.png" width="400">
+<img src="readme_imgs/2024-08-23_1.png" width="500">
 <li>auto_dq.bat: 메인 인스턴스?</li>
-<img src="readme_imgs/2024-08-23_2.png" width="400">
+<img src="readme_imgs/2024-08-23_2.png" width="500">
 </ul>
 </details>
 
@@ -160,7 +160,7 @@ js 폴더 추가
 
 `wm size`로 스크린 wxh 들고게함
 <details><summary><code>더보기</code></summary>
- <img src="readme_imgs/2024-08-25_2.png" width="200">
+ <img src="readme_imgs/2024-08-25_2.png" width="500">
 
  - 스크린사이즈를 `adb shell wm size`로 직접 갖고오기로 햇음.
  - 화면 켜주는것도 추가(?). 사용자 맞춤 기능으로 넣을수도?

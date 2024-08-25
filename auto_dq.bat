@@ -27,7 +27,7 @@ if !devices! LSS 1 (
     adb disconnect
     echo "enter port of device to connect"
     set /p port="port: "
-    adb connect !ip!:!port!
+    adb connect !ip!:!port! REM DEBUG:TODO - ip 위꺼 지우고 여따 박기
 )
 
 for /f "tokens=3 delims==" %%a in ('adb shell dumpsys window ^| findstr "mDreamingLockscreen="') do set device_locked=%%a
