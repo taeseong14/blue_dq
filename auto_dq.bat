@@ -1,15 +1,15 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-if not exist ip.txt (
-    set /p ip="ip: "
-    echo !ip! > ip.txt
-) else (
-    set /p ip=<ip.txt
-    set ip=!ip: =!
-)
+@REM if not exist ip.txt (
+@REM     set /p ip="ip: "
+@REM     echo !ip! > ip.txt
+@REM ) else (
+@REM     set /p ip=<ip.txt
+@REM     set ip=!ip: =!
+@REM )
 
-echo ip: %ip% (del ip.txt to change)
+@REM echo ip: %ip% (del ip.txt to change)
 
 cd ..
 
@@ -35,34 +35,26 @@ adb shell input keyevent KEYCODE_HOME
 adb shell monkey -p com.nexon.bluearchive -c android.intent.category.LAUNCHER 1 > nul 2>&1
 adb shell monkey -p com.nexon.bluearchiveteen -c android.intent.category.LAUNCHER 1 > nul 2>&1
 
-set screenX=2340
-set screenY=1080
-
 echo opening app
 
-set t=10 & call :wait
+set t=5  & call :wait
 
-@REM TODO: 한번만 출력하도록 바꿔야함.
-echo.
-echo [93m[^^!] Warning[0m 
-echo [93m[^^!] Check if program clicks EXACT CENTER of the screen[0m 
-echo [93m[^^!] if not^^: edit .cmd #42, 43[0m 
-echo.
+for /f "tokens=3" %%a in ('adb shell wm size') do (
+    for /f "tokens=1,2 delims=x" %%b in ("%%a") do (
+        set screenX=%%c
+        set screenY=%%b
+    )
+)
+echo screen size: %screenX%x%screenY%
+@REM 내껀 2340x1080
 
-set t=5 & call :wait
+
+
 set /a x = screenX / 2
 set /a y = screenY / 2
 
 
-set /a i=0
-:loop
-echo clicking... check the screen
-adb shell input tap %x% %y%
-set t=1 & call :wait
-set /a i=%i%+1
-if %i% LEQ 5 goto loop
-
-timeout /t 20 /nobreak
+timeout /t 20 /nobreak REM TODO: 딜레이 다시 조정
 
 adb shell input tap 100 1000 REM 오늘 하루 보지 않기
 set t=1 & call :wait
@@ -79,17 +71,18 @@ echo game started
 
 :End
 set /p a="Enter to continue"
-goto eof
+goto :eof
 
 
 :wait
 timeout /t !t! /nobreak > nul 2>&1
-goto eof
+goto :eof
 
 :screencap
 adb shell screencap sdcard/screen.png
-adb pull sdcard/screen.png b_a/screen.png
-goto eof
+adb pull sdcard/screen.png b_a/screen.png > nul 2>&1
+adb shell rm sdcard/screen.png
+goto :eof
 
 
 @REM DEBUG; escape: 

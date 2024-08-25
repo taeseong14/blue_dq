@@ -85,7 +85,9 @@ adb & .bat 연습용
  - [X] adb 연결
     - [X] ip.txt ? read : input->write
     - [X] adb not connected -> input port, connect
-    - [ ] 마지막에 disconnect
+    <!-- - [ ] 마지막에 disconnect -->
+ - [X] 앱 켜기
+ - [X] 스크린 사이즈 들고오기
  - [X] 메인화면 들가기
  - [ ] 출석보상, 메모리얼 스킵, 공월/ap 수령, 공지 x표, 아이템 만료 알림 치우기
  - [ ] [기능들](#기능)
@@ -104,16 +106,17 @@ adb & .bat 연습용
 
 ## 매우몹시생각고려중))
 
-1. 전술대회.......
+1. 전술대회....... 미션용 1회 입장만 하고 (sharp로 전투스킵 체크) 보상받는건 귀차니즘 모드에나 넣어야할듯 on-off를 넣던가
 
-2. 인풋같은거   
-adb screencap -> pull 으로 스샷 갖고와서 사진분석..은 가능하지만   
-쓸일이 없기를 바람
-+ :
+2. ~~인풋같은거~~   
+~~adb screencap -> pull 으로 스샷 갖고와서 사진분석..은 가능하지만 쓸일이 없기를 바람.~~   
+2024-08-25) 분석같은거 하느라 쓸예정
 
 3. 상점 구매같은거 효율 찾아봐야함. 지금은 임시로 보고서 하나(미션용)만 사게 할것.
 
 4. ms단위로 정지가 안먹음(ping, powershell command 등등). `./wait.js` 실행해서 100ms 멈추게 한게 유일한 방법.
+
+5. 다른폰들 스크린사이즈 고려하기 귀찮으면 그냥 `adb shell wm size 1080x2340` 박아버리는게 나을수도? 끝나고 `adb shell wm size reset`만 안빼먹으면 충분히 고려해볼만한 선택지
 
 <br><br>
 
@@ -128,9 +131,9 @@ adb screencap -> pull 으로 스샷 갖고와서 사진분석..은 가능하지�
 올해에는 개발 못끝낼게 예상됨..
 <details><summary><code>이미지</code></summary>
 <ul>
-<li>init_device.bat</li>
+<li>init_device.bat: 기기 최초 페어링</li>
 <img src="readme_imgs/2024-08-23_1.png" width="400">
-<li>auto_dq.bat</li>
+<li>auto_dq.bat: 메인 인스턴스?</li>
 <img src="readme_imgs/2024-08-23_2.png" width="400">
 </ul>
 </details>
@@ -146,11 +149,14 @@ adb screencap -> pull 으로 스샷 갖고와서 사진분석..은 가능하지�
 js 폴더 추가
 <details><summary><code>이미지</code></summary>
 <img src="readme_imgs/2024-08-25.png" width="200">
-</details>
 
  - sharp.js: 전술대회 스킵이 켜져있는가 확인용 (수정예정)
  - test.js: 카페에서 클릭해야 할 학생 위치 찾기용 (개발중)
  - wait.js: 대충 ms단위 대기용
+</details>
+
+
+ + 스크린사이즈를 `adb shell wm size`로 직접 갖고오기로 햇음.
 
 
 <br><br>
