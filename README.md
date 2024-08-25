@@ -129,7 +129,8 @@ adb & .bat 연습용
 
 > 2024-08-23
 
-올해에는 개발 못끝낼게 예상됨..
+올해에는 개발 못끝낼게 예상됨..   
+.bat 두개 추가
 <details><summary><code>더보기</code></summary>
 <ul>
 <li>init_device.bat: 기기 최초 페어링</li>
@@ -137,11 +138,12 @@ adb & .bat 연습용
 <li>auto_dq.bat: 메인 인스턴스?</li>
 <img src="readme_imgs/2024-08-23_2.png" width="500">
 </ul>
-</details>
 
  - adb pair 완성 (init_device.bat)
  - 대충 adb 연결이랑 블아 실행 완성
  - ip.txt 추가, settings.txt같은거 추가예정 (key=val format) 아님 json이라던가?
+</details>
+
 
 <br>
 
@@ -165,6 +167,8 @@ js 폴더 추가
  - 스크린사이즈를 `adb shell wm size`로 직접 갖고오기로 햇음.
  - 화면 켜주는것도 추가(?). 사용자 맞춤 기능으로 넣을수도?
 </details>
+
+또 카페 학생 위치 파악 기능 개발중 [(test.js)](js/test.js)
 
 <br><br>
 
