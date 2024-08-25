@@ -30,6 +30,13 @@ if !devices! LSS 1 (
     adb connect !ip!:!port!
 )
 
+for /f "tokens=3 delims==" %%a in ('adb shell dumpsys window ^| findstr "mDreamingLockscreen="') do set device_locked=%%a
+if %device_locked% == true (
+    echo.
+    echo [93m[^^!] device is locked[0m
+    if exist on.bat ( call on & echo. ) else goto End
+)
+
 
 adb shell input keyevent KEYCODE_HOME
 adb shell monkey -p com.nexon.bluearchive -c android.intent.category.LAUNCHER 1 > nul 2>&1
@@ -37,7 +44,7 @@ adb shell monkey -p com.nexon.bluearchiveteen -c android.intent.category.LAUNCHE
 
 echo opening app
 
-set t=5  & call :wait
+node b_a/js/w.js 5
 
 for /f "tokens=3" %%a in ('adb shell wm size') do (
     for /f "tokens=1,2 delims=x" %%b in ("%%a") do (
@@ -50,11 +57,10 @@ echo screen size: %screenX%x%screenY%
 
 
 
-set /a x = screenX / 2
-set /a y = screenY / 2
+set /a x = screenX / 2 & set /a y = screenY / 2
 
 
-timeout /t 20 /nobreak REM TODO: 딜레이 다시 조정
+node b_a/js/w.js 20 1 REM TODO: 딜레이 다시 조정
 
 adb shell input tap 100 1000 REM 오늘 하루 보지 않기
 set t=1 & call :wait
@@ -70,6 +76,7 @@ echo game started
 
 
 :End
+echo.
 set /p a="Enter to continue"
 goto :eof
 

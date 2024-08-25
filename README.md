@@ -75,6 +75,7 @@ adb & .bat 연습용
  - 사용자 맞춤 기능에 들어갈거
     - 임무 (하드, 이벤?..) // 이벤은 업무 -> 좌상단에서 들갈거지만 여러개 있음 오류날수도
     - ap 충전
+    - 밝기 낮추기?
  - 귀차니즘 모드같은거에 들어갈거
     - 스케쥴 랜덤?
 
@@ -152,9 +153,14 @@ js 폴더 추가
 
  - sharp.js: 전술대회 스킵이 켜져있는가 확인용 (수정예정)
  - test.js: 카페에서 클릭해야 할 학생 위치 찾기용 (개발중)
- - wait.js: 대충 ms단위 대기용
+ - ~~wait.js~~[->w.js]: 대충 ms단위 대기용
 </details>
 
+<br>
+
+`wm size`로 스크린 wxh 들고게함
+<details><summary><code>이미지</code></summary>
+ <img src="readme_imgs/2024-08-25.png" width="200">
 
  + 스크린사이즈를 `adb shell wm size`로 직접 갖고오기로 햇음.
 
