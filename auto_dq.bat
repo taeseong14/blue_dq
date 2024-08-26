@@ -85,9 +85,15 @@ echo notice closed
 
 node b_a/js/w.js 3 1
 
+adb shell input tap 1900 133
+node b_a/js/w.js 500
+adb shell input tap 1900 133 @REM 구석 터치 공월 수령
+node b_a/js/w.js 1
+
+
+
 @REM TODO: 아이템 기한 만료시 스샷 찍기, 몇초 기다려야하는지 확인
 
-node b_a/js/w.js 1
 adb shell input tap 1900 133
 node b_a/js/w.js 500
 adb shell input tap 1900 133 @REM 구석 터치 창들 닫기
