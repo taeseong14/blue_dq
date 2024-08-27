@@ -72,14 +72,14 @@ node b_a/js/w.js 30 1
 
 adb shell input tap %x% %y% @REM 출석 보상
 
-node b_a/js/w.js 4 1
+node b_a/js/w.js 3500 1
 
 adb shell input tap %x% %y% @REM 메모리얼 스킵
 echo memorial skipping
-node b_a/js/w.js 200
+node b_a/js/w.js 400
 adb shell input tap 1380 777 @REM 확인
 
-node b_a/js/w.js 3 1
+node b_a/js/w.js 4500 1
 adb shell input tap 2077 86 @REM 공지 x
 echo notice closed
 
@@ -89,6 +89,16 @@ adb shell input tap 1900 133
 node b_a/js/w.js 500
 adb shell input tap 1900 133 @REM 구석 터치 공월 수령
 node b_a/js/w.js 1
+adb shell input tap 1900 133
+node b_a/js/w.js 500
+adb shell input tap 1900 133
+node b_a/js/w.js 500
+adb shell input tap 1900 133
+node b_a/js/w.js 500
+adb shell input tap 1900 133
+node b_a/js/w.js 500
+adb shell input tap 1900 133 @REM 대충 구석 터치
+node b_a/js/w.js 3
 
 
 
@@ -100,7 +110,7 @@ adb shell input tap 1900 133 @REM 구석 터치 창들 닫기
 
 
 adb shell input tap 241 974 @REM 카페 들가기
-
+echo opening cafe
 node b_a/js/w.js 7
 
 adb shell input tap 2000 500 @REM 대충 오른쪽 탭
@@ -146,8 +156,8 @@ adb shell input tap 1239 974 @REM 제조
 node b_a/js/w.js 2
 adb shell input tap 2000 983 @REM 일괄 수령
 node b_a/js/w.js 4
-adb shell input tap 1380 777 @REM 확인
-
+adb shell input tap 1900 133 @REM 받기
+node b_a/js/w.js 500
 adb shell input tap 1592 983 @REM 빠른 제조
 node b_a/js/w.js 2
 adb shell input tap 1968 930 @REM 제조 시작
@@ -169,7 +179,7 @@ node b_a/js/w.js 100
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 2
 
-adb shell inpadb shell input tap 2122 827 @REM 업무
+adb shell input tap 2122 827 @REM 업무
 node b_a/js/w.js 3
 
 adb shell input tap 1352 655 @REM 현상수배
@@ -193,13 +203,13 @@ node b_a/js/w.js 200
 adb shell input tap 1664 614 @REM 소탕 시작 버튼
 node b_a/js/w.js 1
 adb shell input tap 1380 777 @REM 확인
-node b_a/js/w.js 4
+node b_a/js/w.js 5
 adb shell input keyevent KEYCODE_BACK @REM skip
-node b_a/js/w.js 500
+node b_a/js/w.js 700
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 1
 adb shell input keyevent KEYCODE_BACK @REM 창닫기
-node b_a/js/w.js 200
+node b_a/js/w.js 400
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 1
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
@@ -227,9 +237,9 @@ node b_a/js/w.js 200
 adb shell input tap 1664 614 @REM 소탕 시작 버튼
 node b_a/js/w.js 1
 adb shell input tap 1380 777 @REM 확인
-node b_a/js/w.js 4
+node b_a/js/w.js 5
 adb shell input keyevent KEYCODE_BACK @REM skip
-node b_a/js/w.js 500
+node b_a/js/w.js 700
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 1
 adb shell input keyevent KEYCODE_BACK @REM 창닫기
@@ -241,7 +251,7 @@ node b_a/js/w.js 2
 
 
 @REM @REM TODO: 전술대회
-@REM adb shell input tap 1926 901 @REM 전술 대회
+adb shell input tap 1926 901 @REM 전술 대회
 @REM node b_a/js/w.js 4
 
 
