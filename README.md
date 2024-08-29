@@ -45,7 +45,7 @@ adb & .bat 연습용
 
  - settings.txt 에서 사용자 맞춤 설정 가능.
 
-<details><summary><div id="settings-document"><code>사용자 설정 가이드</code></div></summary>
+<div id="settings-document"><details><summary><code>사용자 설정 가이드</code></summary>
 
 #### 기본 규칙
  - `=` 뒤에 값 넣으면 댐. 중괄호는 빼고. 중괄호 안 `:` 뒤 머시기들은 기본값.
@@ -123,6 +123,7 @@ adb & .bat 연습용
 더 많은 설정 기능 추가 예정.
 
 </details>
+</div>
 
 
 ### 그 후 사용
