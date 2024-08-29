@@ -251,22 +251,22 @@ adb shell input tap 1926 435 @REM max
 node b_a/js/w.js 200
 adb shell input tap 1664 614 @REM 소탕 시작 버튼
 node b_a/js/w.js 1
-adb shell input tap 1380 777 @REM 확인
+adb shell input tap 1380 777
 node b_a/js/w.js 5 1
 adb shell input keyevent KEYCODE_BACK @REM skip
 node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK @REM 뒤로
+adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK @REM 창닫기
+adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK @REM 뒤로
+adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK @REM 뒤로
+adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 3
 
 
-:Line
-adb shell input tap 1926 901 @REM 전술 대회
+adb shell input tap 1926 901
+echo tactchal
 node b_a/js/w.js 4
 adb shell input tap 1231 865 @REM 3픽 누르기
 node b_a/js/getPixelRGB.js 2036 889
@@ -279,17 +279,17 @@ del b_a\screen.png
 for /f "tokens=*" %%a in (b_a\result.txt) do set a=%%a 
 
 if "%a%" == "112 156 188 " (
-    adb shell input tap 2036 889 @REM 전투 스킵 체크박스
+    adb shell input tap 2036 889
     echo skip checked
     node b_a/js/w.js 1
 ) else (
     echo skip already checked
 )
-adb shell input tap 2065 991 @REM 출격
+adb shell input tap 2065 991 
 node b_a/js/w.js 10 1
-adb shell input keyevent KEYCODE_BACK @REM 닫기
+adb shell input keyevent KEYCODE_BACK 
 node b_a/js/w.js 1
-adb shell input tap 2185 41 @REM 홈버튼
+adb shell input tap 2185 41
 
 
 
