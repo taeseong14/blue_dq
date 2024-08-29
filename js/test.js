@@ -1,6 +1,4 @@
-const sharp = require('sharp');
-
-const getImageData = async imagePath => sharp(imagePath).raw().removeAlpha().toBuffer({ resolveWithObject: true });
+const getImageData = require('./getImageData');
 
 (async () => {
     const { data: icon_data, info: icon_info } = await getImageData('cafe_icon.png');

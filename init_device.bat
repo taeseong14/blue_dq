@@ -18,4 +18,4 @@ cd ..
 set /p port="port: "
 adb pair "%ip%:%port%"
 
-set /p a="Enter to continue"
+pause

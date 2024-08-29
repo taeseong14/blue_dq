@@ -1,15 +1,27 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-@REM if not exist ip.txt (
-@REM     set /p ip="ip: "
-@REM     echo !ip! > ip.txt
-@REM ) else (
-@REM     set /p ip=<ip.txt
-@REM     set ip=!ip: =!
-@REM )
-
-@REM echo ip: %ip% (del ip.txt to change)
+@REM 사용자 맞춤 설정들
+if not exist settings.txt (
+    echo _SYSTEM__BRIGHTNESS_DOWN=0 > settings.txt
+    echo _SYSTEM__SOUND_DOWN=0 >> settings.txt
+    echo AP_BUY=0 >> settings.txt
+    echo SHOP__NORMAL_BUY=1 >> settings.txt
+    echo SHOP__NORMAL_REFRESH=0 >> settings.txt
+    echo SHOP__TACTCHAL_ON=0 >> settings.txt
+    echo SHOP__TACTCHAL_BUY=5,6 >> settings.txt
+    echo SHOP__TACTCHAL_REFRESH=0 >> settings.txt
+    echo TASK__A_USE=1 >> settings.txt
+    echo TASK__A_PICK=0 >> settings.txt
+    echo TASK__B_USE=1 >> settings.txt
+    echo TASK__B_PICK=0 >> settings.txt
+    echo TASK__TACTCHAL_TRY=1 >> settings.txt
+    echo TASK__TACTCHAL_PICK=3 >> settings.txt
+    echo TASK__TACTCHAL_CLIAM_REWARD=0 >> settings.txt
+    echo TASK__HARD_ON=0 >> settings.txt
+    echo TASK__HARD_STAGE=15-2 >> settings.txt
+)
+pause
 
 cd ..
 
@@ -25,7 +37,8 @@ if !devices! LSS 1 (
 ) else if !devices! GTR 1 ( @REM using more than 1 device
     echo [^^!] connected device more than 1
     adb disconnect
-    echo "enter port of device to connect"
+    echo "enter ip and port of device to connect"
+    set /p ip="ip: "
     set /p port="port: "
     adb connect !ip!:!port! @REM DEBUG:TODO - ip 위꺼 지우고 여따 박기
 )
@@ -88,8 +101,10 @@ node b_a/js/w.js 3 1
 adb shell input tap 1900 133
 node b_a/js/w.js 500
 adb shell input tap 1900 133 @REM 구석 터치 공월 수령
-node b_a/js/w.js 1
+echo claim monthly reward
+node b_a/js/w.js 2 1
 adb shell input tap 1900 133
+echo closing things
 node b_a/js/w.js 500
 adb shell input tap 1900 133
 node b_a/js/w.js 500
@@ -100,18 +115,9 @@ node b_a/js/w.js 500
 adb shell input tap 1900 133 @REM 대충 구석 터치
 node b_a/js/w.js 3
 
-
-
-@REM TODO: 아이템 기한 만료시 스샷 찍기, 몇초 기다려야하는지 확인
-
-adb shell input tap 1900 133
-node b_a/js/w.js 500
-adb shell input tap 1900 133 @REM 구석 터치 창들 닫기
-
-
 adb shell input tap 241 974 @REM 카페 들가기
 echo opening cafe
-node b_a/js/w.js 7
+node b_a/js/w.js 9 1
 
 adb shell input tap 2000 500 @REM 대충 오른쪽 탭
 node b_a/js/w.js 1
@@ -131,7 +137,7 @@ node b_a/js/w.js 500
 adb shell input tap 286 166 @REM 카페 이동
 node b_a/js/w.js 1
 adb shell input tap 500 272 @REM 2호점
-node b_a/js/w.js 7
+node b_a/js/w.js 9 1
 adb shell input tap 2000 500 @REM 대충 오른쪽 탭
 
 node b_a/js/w.js 1
@@ -165,9 +171,10 @@ node b_a/js/w.js 1
 adb shell input tap 1380 777 @REM 확인
 node b_a/js/w.js 1
 adb shell input tap 2185 41 @REM 홈버튼
-node b_a/js/w.js 2
+node b_a/js/w.js 3
 
 adb shell input tap 1435 974 @REM 상점
+echo shop
 node b_a/js/w.js 3
 adb shell input tap 1275 408 @REM 회색보고서 선택
 adb shell input tap 2066 980 @REM 선택 구매
@@ -177,13 +184,13 @@ node b_a/js/w.js 2
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 100
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
-node b_a/js/w.js 2
-
-adb shell input tap 2122 827 @REM 업무
 node b_a/js/w.js 3
 
+adb shell input tap 2122 827 @REM 업무
+node b_a/js/w.js 5 1
+
 adb shell input tap 1352 655 @REM 현상수배
-node b_a/js/w.js 2
+node b_a/js/w.js 3
 set /a r = %random% %% 3
 echo random: %r%
 if %r% == 0 (
@@ -193,7 +200,7 @@ if %r% == 0 (
 ) else (
     adb shell input tap 2000 707 @REM 교실
 )
-node b_a/js/w.js 1
+node b_a/js/w.js 2
 adb shell input swipe 1688 900 1688 300 300 @REM 맽 밑으로
 node b_a/js/w.js 1
 adb shell input tap 1981 925 @REM 입장 마지막
@@ -203,20 +210,20 @@ node b_a/js/w.js 200
 adb shell input tap 1664 614 @REM 소탕 시작 버튼
 node b_a/js/w.js 1
 adb shell input tap 1380 777 @REM 확인
-node b_a/js/w.js 5
+node b_a/js/w.js 7
 adb shell input keyevent KEYCODE_BACK @REM skip
 node b_a/js/w.js 700
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 1
 adb shell input keyevent KEYCODE_BACK @REM 창닫기
-node b_a/js/w.js 400
+node b_a/js/w.js 1
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 1
 adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 2
 
 adb shell input tap 1352 938 @REM 학원교류회
-node b_a/js/w.js 2
+node b_a/js/w.js 3
 @REM @REM TODO: 랜덤 활성화, 지금은 내가 게헨나 말고 D를 못깼기에 게한나로 고정.
 @REM set /a r = %random% %% 3
 @REM echo random: %r%
@@ -229,7 +236,7 @@ node b_a/js/w.js 2
 @REM )
 adb shell input tap 2000 536 @REM 게헨나 고정 따이
 echo debug; gehenna selected
-node b_a/js/w.js 2
+node b_a/js/w.js 3
 adb shell input tap 1981 826 @REM D 스테이지
 node b_a/js/w.js 1
 adb shell input tap 1926 435 @REM max
@@ -250,9 +257,31 @@ adb shell input keyevent KEYCODE_BACK @REM 뒤로
 node b_a/js/w.js 2
 
 
-@REM @REM TODO: 전술대회
+
 adb shell input tap 1926 901 @REM 전술 대회
-@REM node b_a/js/w.js 4
+node b_a/js/w.js 4
+adb shell input tap 1231 865 @REM 3픽 누르기
+node b_a/js/getPixelRGB.js 2036 889
+node b_a/js/w.js 3
+adb shell input tap 1171 901 @REM 공격 편성
+node b_a/js/w.js 6 1
+call :screencap
+node b_a/js/getPixelRGB.js 2036 889
+del b_a\screen.png
+for /f "tokens=*" %%a in (b_a\result.txt) do set a=%%a 
+
+if "%a%" == "112 156 188 " (
+    adb shell input tap 2036 889 @REM 전투 스킵 체크박스
+    echo skip checked
+    node b_a/js/w.js 1
+) else (
+    echo skip already checked
+)
+adb shell input tap 2065 991 @REM 출격
+node b_a/js/w.js 10 1
+adb shell input keyevent KEYCODE_BACK @REM 닫기
+node b_a/js/w.js 1
+adb shell input tap 2185 41 @REM 홈버튼
 
 
 
@@ -276,13 +305,16 @@ adb shell input tap 1926 901 @REM 전술 대회
 
 :End
 echo.
-set /p a="Enter to continue"
+pause
 goto :eof
 
 
 
 :screencap
+adb shell wm size 1080x2340
+node b_a/js/w.js
 adb shell screencap sdcard/screen.png
+adb shell wm size reset
 adb pull sdcard/screen.png b_a/screen.png > nul 2>&1
 adb shell rm sdcard/screen.png
 goto :eof
