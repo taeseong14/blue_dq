@@ -231,18 +231,15 @@ node b_a/js/w.js 2
 
 adb shell input tap 1352 938 @REM 학원교류회
 node b_a/js/w.js 3
-@REM @REM TODO: 랜덤 활성화, 지금은 내가 게헨나 말고 D를 못깼기에 게한나로 고정.
-@REM set /a r = %random% %% 3
-@REM echo random: %r%
-@REM if %r% == 0 (
-@REM     adb shell input tap 2000 345 @REM 트리니티
-@REM ) else if %r% == 1 (
-@REM     adb shell input tap 2000 536 @REM 게헨나
-@REM ) else (
-@REM     adb shell input tap 2000 707 @REM 밀레니엄
-@REM )
-adb shell input tap 2000 536 @REM 게헨나 고정 따이
-echo debug; gehenna selected
+set /a r = %random% %% 3
+echo random: %r%
+if %r% == 0 (
+    adb shell input tap 2000 345 @REM 트리니티
+) else if %r% == 1 (
+    adb shell input tap 2000 536 @REM 게헨나
+) else (
+    adb shell input tap 2000 707 @REM 밀레니엄
+)
 node b_a/js/w.js 3
 adb shell input tap 1981 826 @REM D 스테이지
 node b_a/js/w.js 1
@@ -269,7 +266,6 @@ adb shell input tap 1926 901
 echo tactchal
 node b_a/js/w.js 4
 adb shell input tap 1231 865 @REM 3픽 누르기
-node b_a/js/getPixelRGB.js 2036 889
 node b_a/js/w.js 3
 adb shell input tap 1171 901 @REM 공격 편성
 node b_a/js/w.js 6 1
