@@ -2,23 +2,29 @@
 setlocal EnableDelayedExpansion
 
 if not exist settings.txt (
-    echo _SYSTEM__BRIGHTNESS_DOWN=0 > settings.txt
-    echo _SYSTEM__SOUND_DOWN=0 >> settings.txt
-    echo AP_BUY=0 >> settings.txt
-    echo SHOP__NORMAL_BUY=1 >> settings.txt
-    echo SHOP__NORMAL_REFRESH=0 >> settings.txt
-    echo SHOP__TACTCHAL_ON=0 >> settings.txt
-    echo SHOP__TACTCHAL_BUY=5,6 >> settings.txt
-    echo SHOP__TACTCHAL_REFRESH=0 >> settings.txt
-    echo TASK__A_USE=1 >> settings.txt
-    echo TASK__A_PICK=0 >> settings.txt
-    echo TASK__B_USE=1 >> settings.txt
-    echo TASK__B_PICK=0 >> settings.txt
-    echo TASK__TACTCHAL_TRY=1 >> settings.txt
-    echo TASK__TACTCHAL_PICK=3 >> settings.txt
-    echo TASK__TACTCHAL_CLIAM_REWARD=0 >> settings.txt
-    echo TASK__HARD_ON=0 >> settings.txt
-    echo TASK__HARD_STAGE=15-2 >> settings.txt
+    echo _SYSTEM__BRIGHTNESS_DOWN=0>settings.txt
+    echo _SYSTEM__SOUND_DOWN=0>>settings.txt
+    echo AP_BUY=0>>settings.txt
+    echo SHOP__NORMAL_BUY=1>>settings.txt
+    echo SHOP__NORMAL_REFRESH=0>>settings.txt
+    echo SHOP__TACTCHAL_ON=0>>settings.txt
+    echo SHOP__TACTCHAL_BUY=5,6>>settings.txt
+    echo SHOP__TACTCHAL_REFRESH=0>>settings.txt
+    echo TASK__A_USE=1>>settings.txt
+    echo TASK__A_PICK=0>>settings.txt
+    echo TASK__B_USE=1>>settings.txt
+    echo TASK__B_PICK=0>>settings.txt
+    echo TASK__TACTCHAL_TRY=1>>settings.txt
+    echo TASK__TACTCHAL_PICK=3>>settings.txt
+    echo TASK__TACTCHAL_CLIAM_REWARD=0>>settings.txt
+    echo TASK__HARD_ON=0>>settings.txt
+    echo TASK__HARD_STAGE=15-2>>settings.txt
+)
+
+for /f "delims=" %%a in (settings.txt) do (
+    for /f "tokens=1,2 delims==" %%b in ("%%a") do (
+        set S_%%b=%%c
+    )
 )
 
 cd ..
@@ -70,10 +76,21 @@ set /a x = screenX / 2
 set /a y = screenY / 2
 
 
-node b_a/js/w.js 40 1
+@REM wait for game to load
+:loop
+call :screencap
+node b_a/js/getPixelRGB.js 193 963
+for /f "tokens=*" %%a in (b_a\result.txt) do (
+    if "%%a" == "243 244 244" (
+        echo ready
+        del b_a\screen.png b_a\result.txt
+    ) else goto :loop
+)
 
-adb shell input tap 369 1017
-node b_a/js/w.js 300
+for /l %%a in (1, 1, 6) do (
+    adb shell input tap 369 1017
+    node b_a/js/w.js 200
+)
 adb shell input tap %x% %y%
 echo game started
 
@@ -101,14 +118,10 @@ echo claim monthly reward
 node b_a/js/w.js 2 1
 adb shell input tap 1900 133
 echo closing things
-node b_a/js/w.js 500
-adb shell input tap 1900 133
-node b_a/js/w.js 500
-adb shell input tap 1900 133
-node b_a/js/w.js 500
-adb shell input tap 1900 133
-node b_a/js/w.js 500
-adb shell input tap 1900 133
+for /l %%a in (1, 1, 4) do (
+    node b_a/js/w.js 500
+    adb shell input tap 1900 133
+)
 node b_a/js/w.js 3
 
 adb shell input tap 241 974
@@ -126,12 +139,10 @@ node b_a/js/w.js 1
 adb shell input tap 1170 824
 echo claim ap
 node b_a/js/w.js 3
-adb shell input tap 1900 133
-node b_a/js/w.js 500
-adb shell input tap 1900 133
-node b_a/js/w.js 500
-adb shell input tap 1900 133 
-node b_a/js/w.js 500
+for /l %%a in (1, 1, 3) do (
+    adb shell input tap 1900 133
+    node b_a/js/w.js 500
+)
 adb shell input tap 286 166
 node b_a/js/w.js 1
 adb shell input tap 500 272
@@ -220,12 +231,10 @@ adb shell input tap 1380 777
 node b_a/js/w.js 7 1
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 2
-adb shell input keyevent KEYCODE_BACK
-node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK
-node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK
-node b_a/js/w.js 1
+for /l %%a in (1, 1, 3) do (
+    adb shell input keyevent KEYCODE_BACK
+    node b_a/js/w.js 1
+)
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 2
 
@@ -249,14 +258,10 @@ adb shell input tap 1664 614 @REM 소탕 시작 버튼
 node b_a/js/w.js 1
 adb shell input tap 1380 777
 node b_a/js/w.js 5 1
-adb shell input keyevent KEYCODE_BACK @REM skip
-node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK
-node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK
-node b_a/js/w.js 1
-adb shell input keyevent KEYCODE_BACK
-node b_a/js/w.js 1
+for /l %%a in (1, 1, 4) do (
+    adb shell input keyevent KEYCODE_BACK
+    node b_a/js/w.js 1
+)
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 3
 
@@ -272,14 +277,14 @@ node b_a/js/w.js 6 1
 call :screencap
 node b_a/js/getPixelRGB.js 2036 889
 del b_a\screen.png
-for /f "tokens=*" %%a in (b_a\result.txt) do set a=%%a 
-
-if "%a%" == "112 156 188 " (
-    adb shell input tap 2036 889
-    echo skip checked
-    node b_a/js/w.js 1
-) else (
-    echo skip already checked
+for /f "tokens=*" %%a in (b_a\result.txt) do (
+    if "%%a" == "112 156 188" (
+        adb shell input tap 2036 889
+        echo skip checked
+        node b_a/js/w.js 1
+    ) else (
+        echo skip already checked
+    )
 )
 adb shell input tap 2065 991 
 node b_a/js/w.js 10 1
