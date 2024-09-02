@@ -124,6 +124,36 @@ for /l %%a in (1, 1, 4) do (
 )
 node b_a/js/w.js 3
 
+
+if %S_AP_BUY% == 0 (
+    echo no ap buying
+) else (
+    :loop
+    adb shell input tap 1245 41
+    node b_a/js/w.js 2
+    if !S_AP_BUY! GTR 2 (
+        adb shell input tap 1580 517
+        set /a S_AP_BUY-=3
+    ) else (
+        adb shell input tap 1454 517
+        if !S_AP_BUY! == 2 (
+            node b_a/js/w.js 200
+            adb shell input tap 1454 517
+        )
+        set /a S_AP_BUY=0
+    )
+    node b_a/js/w.js 300
+    adb shell input tap 1388 788
+    node b_a/js/w.js 3
+    adb shell input tap 1900 133
+    if !S_AP_BUY! GTR 0 (
+        goto :loop
+    )
+)
+node b_a/js/w.js 3
+
+
+
 adb shell input tap 241 974
 echo opening cafe
 node b_a/js/w.js 9 1
@@ -290,8 +320,56 @@ adb shell input tap 2065 991
 node b_a/js/w.js 10 1
 adb shell input keyevent KEYCODE_BACK 
 node b_a/js/w.js 1
-adb shell input tap 2185 41
+adb shell input keyevent KEYCODE_BACK
+node b_a/js/w.js 3
 
+
+if %S_TASK__HARD_ON% == 1 (
+    adb shell input tap 1480 381
+    echo task
+    node b_a/js/w.js 3
+    adb shell input tap 1896 200
+    echo task - hard
+    node b_a/js/w.js 1
+
+    for %%a in (%S_TASK__HARD_STAGE%) do (
+        echo going to stage %%a
+        for /l %%b in (1,1,30) do (
+            adb shell input tap 126 536
+            node b_a/js/w.js 200
+        )
+        for /f "tokens=1,2 delims=-" %%b in ("%%a") do (
+            set /a d=%%b-1
+            for /l %%d in (1,1,!d!) do (
+                adb shell input tap 2203 538
+                node b_a/js/w.js 200
+            )
+            if %%c == 1 (
+                adb shell input tap 1982 352
+            ) else if %%c == 2 ( 
+                adb shell input tap 1982 548
+            ) else if %%c == 3 (
+                adb shell input tap 1982 748
+            ) else (
+                echo [31mInvalid Stage on TASK__HARD_STAGE setting[0m
+                goto :End
+            )
+        )
+        node b_a/js/w.js 1
+        adb shell input tap 1926 435
+        node b_a/js/w.js 200
+        adb shell input tap 1664 614
+        node b_a/js/w.js 1
+        adb shell input tap 1380 777
+        node b_a/js/w.js 12 1
+        adb shell input keyevent KEYCODE_BACK
+        node b_a/js/w.js 500
+        adb shell input keyevent KEYCODE_BACK
+        node b_a/js/w.js 2
+    )
+) else (
+    echo hard task turned off
+)
 
 
 
