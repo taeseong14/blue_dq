@@ -22,7 +22,6 @@ if not exist settings.txt (
 )
 
 cd ..
-goto :Line
 adb start-server
 
 :ConnectDevice
@@ -144,7 +143,7 @@ node b_a/js/w.js 1
 @REM TODO: 카페 학생 탭하기 (2호점)
 
 adb shell input tap 2185 41
-node b_a/js/w.js 9 1
+node b_a/js/w.js 12 1
 
 @REM adb shell input tap 432 974 @REM TODO: 스케쥴
 
@@ -265,6 +264,7 @@ adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 3
 
 
+@REM 전술 대회
 adb shell input tap 1926 901
 echo tactchal
 node b_a/js/w.js 4
