@@ -219,7 +219,59 @@ node b_a/js/w.js 3
 adb shell input tap 1435 974
 echo shop
 node b_a/js/w.js 4
-adb shell input tap 1275 408
+
+
+if %S_SHOP__NORMAL_REFRESH% GTR 3 (
+    echo [31mWrong Value^: SHOP__NORMAL_REFRESH setting must be ^<^= 3[0m
+    goto :End
+)
+
+:loop
+set /a buyed = 0
+set /a len = 0
+for %%i in (%S_SHOP__NORMAL_BUY%) do (
+    set /a len += 1
+)
+for /l %%a in (1,1,5) do (
+    set /a x = 0
+    for /l %%b in (1,1,4) do (
+        set /a buy = 0
+        for %%i in (%S_SHOP__NORMAL_BUY%) do (
+            set /a idx = %%a * 4 - 4 + %%b
+            if !idx! == %%i (
+                set /a buy = %%i
+                set /a buyed += 1
+                echo select !buy!
+            )
+        )
+        if !buy! NEQ 0 (
+            set /a x = %%b * 250 + 1270 - 250
+            adb shell input tap !x! 419
+            node b_a/js/w.js 100
+        )
+    )
+    if !buyed! NEQ %len% (
+        adb shell input swipe 1672 780 1672 380 400
+        node b_a/js/w.js 500
+    )
+)
+for /l %%b in (1,1,4) do (
+    set /a buy = 0
+    for %%i in (%S_SHOP__NORMAL_BUY%) do (
+        set /a idx = 6 * 4 - 4 + %%b
+        echo "!idx!" "%%i"
+        if !idx! == %%i (
+            set /a buy = 1
+            echo buy
+        )
+    )
+    echo buy: "!buy!"
+    if !buy! == 1 (
+        set /a x = %%b * 250 + 1270 - 250
+        adb shell input tap !x! 660
+        node b_a/js/w.js 61
+    )
+)
 adb shell input tap 2066 980
 echo buy selected
 node b_a/js/w.js 300
@@ -227,6 +279,17 @@ adb shell input tap 1387 753
 node b_a/js/w.js 2
 adb shell input keyevent KEYCODE_BACK 
 node b_a/js/w.js 100
+
+if %S_SHOP__NORMAL_REFRESH% GTR 0 (
+    set /a S_SHOP__NORMAL_REFRESH -= 1
+    adb shell input tap 2066 980
+    node b_a/js/w.js 1
+    adb shell input tap 1387 718
+    node b_a/js/w.js 1
+    goto :loop
+)
+
+
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 4
 
