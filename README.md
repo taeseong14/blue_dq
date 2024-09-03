@@ -338,9 +338,13 @@ adb & .bat 연습용
 
 > 2024-09-04
 
- - 상점 구매 커스텀 기능 (구매항목 정하기, 새로고침 횟수) 완성
-<details><summary><code>영상</code></summary>
-<video src="readme_imgs/2024-09-04.mp4" width="500">
+ - 사용자 설정 - 상점 구매 커스텀 기능(SHOP__NORMAL_BUY, SHOP__NORMAL_REFRESH) 완성
+<details><summary><code>더보기</code></summary>
+
+ - 영상 보기
+[![video](readme_imgs/2024-09-04.png)](https://mega.nz/file/sa8lQYZQ#S4r5-tTR5gMS0PftEMQqLLVFSWLovsC_yv5hIfFgZDE)
+ - `SHOP__NORMAL_BUY=1,2,3,4,7,8,11,12,15,16,17,18,19,20,21,22,23,24` , `SHOP__NORMAL_REFRESH=0` 기준
+
 
 </details>
 

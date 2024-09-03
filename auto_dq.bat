@@ -289,7 +289,6 @@ if %S_SHOP__NORMAL_REFRESH% GTR 0 (
     goto :loop
 )
 
-
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 4
 
