@@ -19,7 +19,7 @@ getImageData(__dirname + '/../screen.png')
         const g = data[index + 1];
         const b = data[index + 2];
 
-        console.log(`RGB in ../screen.png at (${x}, ${y}): (${r}, ${g}, ${b})`);
+        if (process.argv[4] !== '0') console.log(`RGB in ../screen.png at (${x}, ${y}): (${r}, ${g}, ${b})`);
         fs.writeFileSync(__dirname + '/../result.txt', `${r} ${g} ${b}`);
     })
     .catch(err => {
