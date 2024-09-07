@@ -362,8 +362,8 @@ for /l %%a in (1, 1, 5) do (
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 3
 
+echo DEBUG!!! check if exitted for tactchal
 pause
-@REM DEBUG !!!!
 
 @REM 전술 대회
 adb shell input tap 1926 901
@@ -375,13 +375,14 @@ if %TASK__TACTCHAL_TRY% GTR 5 (
 )
 
 :loop_tactchal
-if %TASK__TACTCHAL_TRY% GTR 0 (
-    if %TASK__TACTCHAL_PICK% LSS 1 || %TASK__TACTCHAL_PICK% GTR 3 (
+if %S_TASK__TACTCHAL_TRY% GTR 0 (
+    if %S_TASK__TACTCHAL_PICK% LSS 1 || %S_TASK__TACTCHAL_PICK% GTR 3 (
         echo [31mWrong Value^: TASK__TACTCHAL_PICK setting must be 1, 2, or 3[0m
         goto :End
     )
+    set /a y = 865 - 270 * 3 + 270 * %S_TASK__TACTCHAL_PICK%
 
-    adb shell input tap 1231 865 @REM 3픽 누르기
+    adb shell input tap 1231 !y!
     node b_a/js/w.js 3
     adb shell input tap 1171 901 @REM 공격 편성
     node b_a/js/w.js 6 1
@@ -401,15 +402,25 @@ if %TASK__TACTCHAL_TRY% GTR 0 (
     node b_a/js/w.js 10 1
     adb shell input keyevent KEYCODE_BACK 
     node b_a/js/w.js 1
+
+    set /a S_TASK__TACTCHAL_TRY -= 1
+    goto :loop_tactchal
+)
+if %S_TASK__TACTCHAL_CLIAM_REWARD% == 1 (
+    adb shell input tap 674 724
+    node b_a/js/w.js 4
+    adb shell input keyevent KEYCODE_BACK
+    node b_a/js/w.js 1
+) else (
+    echo no claim reward
 )
 
 @REM 임무창
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 3
-:debug
 
-set /a hard_done = 0
 if %S_TASK__HARD_ON% == 1 (
+    set /a hard_done = 0
     adb shell input tap 1480 381
     echo task
     node b_a/js/w.js 3
@@ -475,15 +486,32 @@ if %S_TASK__HARD_ON% == 1 (
     echo hard task turned off
 )
 
+adb shell input keyevent KEYCODE_BACK
+node b_a/js/w.js 5
 
 
 
 @REM adb shell input tap 2028 62 @REM 우편함
-@REM adb shell input tap 194 401 @REM 미션
 
 
+@REM 미션
+adb shell input tap 194 401
+echo mission
+node b_a/js/w.js 5
+adb shell input tap 2037 994
+node b_a/js/w.js 7 1
+adb shell input keyevent KEYCODE_BACK
+node b_a/js/w.js 1
+adb shell input tap 2037 994
+node b_a/js/w.js 4
+adb shell input keyevent KEYCODE_BACK
+node b_a/js/w.js 1
+adb shell input tap 1736 989
+node b_a/js/w.js 100
+adb shell input tap 1736 989
+node b_a/js/w.js 3
+adb shell input keyevent KEYCODE_BACK
 
-@REM adb shell input tap %x% %y%
 
 
 
