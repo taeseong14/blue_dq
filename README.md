@@ -345,6 +345,7 @@ adb & .bat 연습용
  - 영상 보기
 [![video](readme_imgs/2024-09-04.png)](https://mega.nz/file/sa8lQYZQ#S4r5-tTR5gMS0PftEMQqLLVFSWLovsC_yv5hIfFgZDE)
  - `SHOP__NORMAL_BUY=1,2,3,4,7,8,11,12,15,16,17,18,19,20,21,22,23,24` , `SHOP__NORMAL_REFRESH=0` 기준
+</details>
 
 
 <br>
@@ -370,11 +371,6 @@ adb & .bat 연습용
 
 > 2024-09-09
  - 세부 타이밍 조정, ap 구매 테스트 완료, 순서 살짝 바꿈
-
-
-
-
-</details>
 
 
 
