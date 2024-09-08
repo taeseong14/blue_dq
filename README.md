@@ -1,6 +1,6 @@
 # Bluearchive Daily quest
 
-일퀘해주는놈
+일퀘해주는넘
 
 adb & .bat 연습용
 
