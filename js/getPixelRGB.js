@@ -19,8 +19,10 @@ getImageData(__dirname + '/../screen.png')
         const g = data[index + 1];
         const b = data[index + 2];
 
-        if (process.argv[4] !== '0') console.log(`RGB in ../screen.png at (${x}, ${y}): (${r}, ${g}, ${b})`);
         fs.writeFileSync(__dirname + '/../result.txt', `${r} ${g} ${b}`);
+        if (process.argv[4] === '0') return;
+        if (process.argv[4] === '-1') return console.log(`\x1B[2K\x1B[1A\x1B[2KRGB in ../screen.png at (${x}, ${y}): (${r}, ${g}, ${b})`);
+        console.log(`RGB in ../screen.png at (${x}, ${y}): (${r}, ${g}, ${b})`);
     })
     .catch(err => {
         console.error(err);

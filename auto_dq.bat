@@ -80,9 +80,10 @@ set /a y = screenY / 2
 
 
 @REM wait for game to load
+echo.
 :loop_loading
 call :screencap
-node b_a/js/getPixelRGB.js 193 963
+node b_a/js/getPixelRGB.js 193 963 -1
 for /f "tokens=*" %%a in (b_a\result.txt) do (
     if "%%a" == "243 244 244" (
         echo ready
