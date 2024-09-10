@@ -373,7 +373,7 @@ if %S_TASK__HARD_ON% == 1 (
 
     for %%a in (%S_TASK__HARD_STAGE%) do (
         echo going to stage %%a
-        if hard_done == 0 (
+        if !hard_done! == 0 (
             for /l %%b in (1,1,30) do (
                 adb shell input tap 126 536
                 node b_a/js/w.js 200
@@ -442,7 +442,11 @@ if %S_TASK__TACTCHAL_TRY% GTR 5 (
 
 :loop_tactchal
 if %S_TASK__TACTCHAL_TRY% GTR 0 (
-    if %S_TASK__TACTCHAL_PICK% LSS 1 || %S_TASK__TACTCHAL_PICK% GTR 3 (
+    if %S_TASK__TACTCHAL_PICK% LSS 1 (
+        echo [31mWrong Value^: TASK__TACTCHAL_PICK setting must be 1, 2, or 3[0m
+        goto :End
+    )
+    if %S_TASK__TACTCHAL_PICK% GTR 3 (
         echo [31mWrong Value^: TASK__TACTCHAL_PICK setting must be 1, 2, or 3[0m
         goto :End
     )
