@@ -54,7 +54,7 @@ adb & .bat 연습용
 > _SYSTEM__BRIGHTNESS_DOWN={n: 0}
  - 프로그램 시작할때 폰 밝기 n번 낮춤. 새벽에 눈뽕 방지용
 
-> _SYSTEM__SOUND_DOWN={n: 0}
+> _SYSTEM__VOLUME_DOWN={n: 0}
  - 프로그램 시작할때 폰 소리 n번 낮춤.
 
 > AP_BUY={n: 0}

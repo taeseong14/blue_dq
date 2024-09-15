@@ -3,7 +3,7 @@ setlocal EnableDelayedExpansion
 
 if not exist settings.txt (
     echo _SYSTEM__BRIGHTNESS_DOWN=0>settings.txt
-    echo _SYSTEM__SOUND_DOWN=0>>settings.txt
+    echo _SYSTEM__VOLUME_DOWN=0>>settings.txt
     echo AP_BUY=0>>settings.txt
     echo SHOP__NORMAL_BUY=1>>settings.txt
     echo SHOP__NORMAL_REFRESH=0>>settings.txt
@@ -49,11 +49,24 @@ if !devices! LSS 1 (
     adb connect !ip!:!port!
 )
 
+
+@REM code ______________
+
+
 for /f "tokens=3 delims==" %%a in ('adb shell dumpsys window ^| findstr "mDreamingLockscreen="') do set device_locked=%%a
 if %device_locked% == true (
     echo.
     echo [93m[^^!] device is locked[0m
     if exist on.bat ( call on & echo. ) else goto End
+)
+
+
+if %S__SYSTEM__BRIGHTNESS_DOWN% GTR 0 (
+    for /l %%a in (1, 1, %S__SYSTEM__BRIGHTNESS_DOWN%) do adb shell input keyevent KEYCODE_BRIGHTNESS_DOWN
+)
+
+if %S__SYSTEM_VOLUME_DOWN% GTR 0 (
+    for /l %%a in (1, 1, %S__SYSTEM_VOLUME_DOWN%) do adb shell input keyevent KEYCODE_VOLUME_DOWN
 )
 
 
