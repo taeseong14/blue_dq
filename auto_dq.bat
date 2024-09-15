@@ -65,8 +65,8 @@ if %S__SYSTEM__BRIGHTNESS_DOWN% GTR 0 (
     for /l %%a in (1, 1, %S__SYSTEM__BRIGHTNESS_DOWN%) do adb shell input keyevent KEYCODE_BRIGHTNESS_DOWN
 )
 
-if %S__SYSTEM_VOLUME_DOWN% GTR 0 (
-    for /l %%a in (1, 1, %S__SYSTEM_VOLUME_DOWN%) do adb shell input keyevent KEYCODE_VOLUME_DOWN
+if %S__SYSTEM__VOLUME_DOWN% GTR 0 (
+    for /l %%a in (1, 1, %S__SYSTEM__VOLUME_DOWN%) do adb shell input keyevent KEYCODE_VOLUME_DOWN
 )
 
 
