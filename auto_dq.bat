@@ -281,7 +281,7 @@ node b_a/js/w.js 300
 adb shell input tap 1387 753
 node b_a/js/w.js 1
 for /l %%a in (1, 1, 3) do (
-    adb shell input tap 1900 133
+    adb shell input tap 1800 133
     node b_a/js/w.js 500
 )
 
@@ -355,9 +355,9 @@ adb shell input tap 1664 614 @REM 소탕 시작 버튼
 node b_a/js/w.js 1
 adb shell input tap 1380 777
 node b_a/js/w.js 5 1
-for /l %%a in (1, 1, 5) do (
+for /l %%a in (1, 1, 4) do (
     adb shell input keyevent KEYCODE_BACK
-    node b_a/js/w.js 1
+    node b_a/js/w.js 2
 )
 adb shell input keyevent KEYCODE_BACK
 node b_a/js/w.js 3
